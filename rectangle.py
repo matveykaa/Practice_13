@@ -14,8 +14,8 @@ class Rectangle:
 def rectangle_calc(input_info):
     width, height = input_info.split()
     rect = Rectangle(width, height)
-    print("Perimeter = ", rect.get_perimeter, " and area = ", rect.get_area)
+    print("Периметр = ", rect.get_perimeter, " and площадь = ", rect.get_area)
 
 if __name__ == "__main__":
-    input_info = input("Enter width and height for rectangle - ")
+    input_info = input("Введите через пробел ширину и длину для прямоугольника - ")
     rectangle_calc(input_info)

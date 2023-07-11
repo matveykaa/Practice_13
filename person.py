@@ -11,5 +11,5 @@ def person_func(input_info):
     person.print_info()
 
 if __name__ == "__main__":
-    input_info = input("Enter your name and age - ")
+    input_info = input("Введите имя и возраст через пробел - ")
     person_func(input_info)
