@@ -1,7 +1,6 @@
 class BankAccount:
-    def __init__(self, balance: float, interest_rate: float):
+    def __init__(self, balance: float):
         self.balance = balance
-        self.interest_rate = interest_rate
 
     def deposit(self, amount: float):
         self.balance += amount
@@ -14,24 +13,33 @@ class BankAccount:
         else:
             print("Ошибка! Недостаточно средств на счете")
 
-    def add_interest(self):
-        interest = self.balance * self.interest_rate * 0.01
+    def add_interest(self, interest_rate: float):
+        interest = self.balance * interest_rate * 0.01
         self.balance += interest
         print("Баланс после добавления процента к общей сумме = ", self.balance)
 
 
-def bank_calc(balance, rate):
-    bank = BankAccount(balance, rate)
-    input_deposit = float(input("Сумма для вклада - "))
-    bank.deposit(input_deposit)
-    input_data = float(input("Сумма для снятия - "))
-    bank.withdraw(input_data)
-    bank.add_interest()
-
+def bank_calc(balance):
+    bank = BankAccount(balance)
+    while True:
+        print("Выбрите число:")
+        print("1 - Положить сумму на счет; 2 - Снять сумму со счета; 3 - Добавить процент на счет; 4 - Выход")
+        option = int(input())
+        match option:
+            case 1:
+                amount = float(input('Сумма, которую хотите положить на счет = '))
+                bank.deposit(amount)
+            case 2:
+                amount = float(input('Сумма, которую хотите снять со счета = '))
+                bank.withdraw(amount)
+            case 3:
+                amount = float(input('Процент добавления на счет = '))
+                bank.add_interest(amount)
+            case 4:
+                raise KeyboardInterrupt
 
 
 
 if __name__ == "__main__":
     input_balance = float(input("Введите свой начальный баланс - "))
-    input_rate = float(input("Введите желаемый процент для вклада - "))
-    bank_calc(input_balance, input_rate)
+    bank_calc(input_balance)
