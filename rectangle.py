@@ -11,12 +11,16 @@ class Rectangle:
     def get_area(self):
         return self.width * self.height
 
+    def is_square(self):
+        if self.width == self.height:
+            print("Прямоугольник является квадратом")
+
 def rectangle_calc(input_info):
     width, height = input_info.split()
     rect = Rectangle(width, height)
     print("Периметр = ", rect.get_perimeter, " and площадь = ", rect.get_area)
-    if (rect.height == rect.width):
-        print("Прямоугольник является квадратом")
+    rect.is_square()
+
 
 if __name__ == "__main__":
     input_info = input("Введите через пробел ширину и длину для прямоугольника - ")
