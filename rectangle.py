@@ -15,6 +15,8 @@ def rectangle_calc(input_info):
     width, height = input_info.split()
     rect = Rectangle(width, height)
     print("Периметр = ", rect.get_perimeter, " and площадь = ", rect.get_area)
+    if (rect.height == rect.width):
+        print("Прямоугольник является квадратом")
 
 if __name__ == "__main__":
     input_info = input("Введите через пробел ширину и длину для прямоугольника - ")
