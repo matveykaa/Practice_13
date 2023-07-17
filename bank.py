@@ -7,14 +7,15 @@ class BankAccount:
         print("Итого = ", self.balance)
 
     def withdraw(self, amount: float):
-        if amount <= self.balance:
-            self.balance -= amount
-            print("Итого = ", self.balance)
-        else:
-            print("Ошибка! Недостаточно средств на счете")
+        self.balance -= amount
+        print("Итого = ", self.balance)
+
+    def is_negative(self):
+        if self.balance < 0:
+            print("Баланс отрицательный")
 
     def add_interest(self, interest_rate: float):
-        interest = self.balance * interest_rate * 0.01
+        interest = abs(self.balance * interest_rate * 0.01)
         self.balance += interest
         print("Баланс после добавления процента к общей сумме = ", self.balance)
 
@@ -32,6 +33,7 @@ def bank_calc(balance):
             case 2:
                 amount = float(input('Сумма, которую хотите снять со счета = '))
                 bank.withdraw(amount)
+                bank.is_negative()
             case 3:
                 amount = float(input('Процент добавления на счет = '))
                 bank.add_interest(amount)
