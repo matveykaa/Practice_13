@@ -52,7 +52,7 @@ def student_calc():
                 if students:
                     flag = True
                     for chel in students:
-                        if (chel.student_name == name.capitalize()): #and (count == len(students) - 1):
+                        if chel.student_name == name.capitalize():
                             flag = False
                             break
                     if flag:
