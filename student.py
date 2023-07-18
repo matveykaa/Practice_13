@@ -58,58 +58,70 @@ def student_calc():
                     if flag:
                         students.append(new_student)
                     else:
-                        print('Студент уже существует')
+                        print('- - Студент уже существует - -')
                 else:
                     students.append(new_student)
 
             case 2:
-                student_name = input('Имя студента, которому хотите добавить оценку - ')
-                grade = int(input('Оценка, которую хотите добавить - '))
-                found_student = None
-                for s in students:
-                    if s.student_name == student_name.capitalize():
-                        found_student = s
-                if found_student:
-                    found_student.add_grade(grade)
-                    found_student.get_all_marks()
+                if students:
+                    student_name = input('Имя студента, которому хотите добавить оценку - ')
+                    grade = int(input('Оценка, которую хотите добавить - '))
+                    found_student = None
+                    for s in students:
+                        if s.student_name == student_name.capitalize():
+                            found_student = s
+                    if found_student:
+                        found_student.add_grade(grade)
+                        found_student.get_all_marks()
+                    else:
+                        print('- - Студент не найден - -')
                 else:
-                    print('Студент не найден')
+                    print("- - В классе еще нет учащихся - -")
             case 3:
-                student_name = input('Имя студента, у которого хотите вычеслить среднюю оценку - ')
-                found_student = None
-                for s in students:
-                    if s.student_name == student_name.capitalize():
-                        found_student = s
+                if students:
+                    student_name = input('Имя студента, у которого хотите вычеслить среднюю оценку - ')
+                    found_student = None
+                    for s in students:
+                        if s.student_name == student_name.capitalize():
+                            found_student = s
 
-                if found_student:
-                    found_student.get_average_grade()
+                    if found_student:
+                        found_student.get_average_grade()
+                    else:
+                        print('- - Студент не найден - -')
                 else:
-                    print('Студент не найден')
+                    print("- - В классе еще нет учащихся - -")
 
             case 4:
-                summ = count = 0
-                for s in students:
-                    s.get_average_grade()
-                    if s.arifm == 0:
-                        pass
+                if students:
+                    summ = count = 0
+                    for s in students:
+                        s.get_average_grade()
+                        if s.arifm == 0:
+                            pass
+                        else:
+                            print(f'Средняя оценка студента {s.name} = {s.arifm}')
+                        summ += s.arifm
+                        count += 1
+                    if count == 0:
+                        print("Нет данных о средней оценке класса")
                     else:
-                        print(f'Средняя оценка студента {s.name} = {s.arifm}')
-                    summ += s.arifm
-                    count += 1
-                if count == 0:
-                    print("Нет данных о средней оценке класса")
+                        arifm_class = round(summ / count, 1)
+                        print(f'Средняя оценка класса = {arifm_class}')
                 else:
-                    arifm_class = round(summ / count, 1)
-                    print(f'Средняя оценка класса = {arifm_class}')
+                    print("- - В классе еще нет учащихся - -")
             case 6:
                 raise KeyboardInterrupt
             case 5:
-                for s in students:
-                    s.get_average_grade()
-                    if s.arifm == 0:
-                        pass
-                    else:
-                        print(f'{s.name} - {s.arifm}')
+                if students:
+                    for s in students:
+                        s.get_average_grade()
+                        if s.arifm == 0:
+                            pass
+                        else:
+                            print(f'{s.name} - {s.arifm}')
+                else:
+                    print("- - В классе еще нет учащихся - -")
             case _:
                 print("- - Error - -")
 
