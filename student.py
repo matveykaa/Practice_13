@@ -22,7 +22,7 @@ class Student:
             print(f'У {self.name} нет еще оценок')
         else:
             self.arifm = arifm
-            print(f'Средняя оценка студента {self.name} = {arifm}')
+            # print(f'Средняя оценка студента {self.name} = {arifm}')
 
     def get_all_marks(self):
         print("Теперь у студента следующие оценки: ")
@@ -77,11 +77,9 @@ def student_calc():
             case 3:
                 student_name = input('Имя студента, у которого хотите вычеслить среднюю оценку - ')
                 found_student = None
-                i = 0
-                while i < len(students):
-                    if students[i].student_name == student_name.capitalize():
-                        found_student = students[i]
-                    i += 1
+                for s in students:
+                    if s.student_name == student_name.capitalize():
+                        found_student = s
 
                 if found_student:
                     found_student.get_average_grade()
@@ -91,6 +89,11 @@ def student_calc():
             case 4:
                 summ = count = 0
                 for s in students:
+                    s.get_average_grade()
+                    if s.arifm == 0:
+                        pass
+                    else:
+                        print(f'Средняя оценка студента {s.name} = {s.arifm}')
                     summ += s.arifm
                     count += 1
                 if count == 0:
@@ -102,7 +105,11 @@ def student_calc():
                 raise KeyboardInterrupt
             case 5:
                 for s in students:
-                    print(f'{s.name} - {s.arifm}')
+                    s.get_average_grade()
+                    if s.arifm == 0:
+                        pass
+                    else:
+                        print(f'{s.name} - {s.arifm}')
             case _:
                 print("- - Error - -")
 
