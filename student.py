@@ -1,4 +1,5 @@
 from itertools import cycle
+
 class Student:
     def __init__(self, name: str, age: int):
         self.name = name.capitalize()
@@ -30,11 +31,9 @@ class Student:
 
     @property
     def student_name(self):
-        return self.name
-def student_calc(name: str, age: int):
+        return self.name.capitalize()
+def student_calc():
     students = []
-    students_names = []
-    student = None
 
     while True:
         print("Выберите число:")
@@ -50,29 +49,29 @@ def student_calc(name: str, age: int):
                 name = input('Имя студента - ')
                 age = int(input('Возраст студента - '))
                 new_student = Student(name, age)
-                if new_student.student_name in students_names:
-                    print('Студент уже существует')
+                if students:
+                    flag = True
+                    for chel in students:
+                        if (chel.student_name == name.capitalize()): #and (count == len(students) - 1):
+                            flag = False
+                            break
+                    if flag:
+                        students.append(new_student)
+                    else:
+                        print('Студент уже существует')
                 else:
                     students.append(new_student)
-                    students_names.append(new_student.student_name)
-                    # students_names[new_student.student_name] = age
+
             case 2:
                 student_name = input('Имя студента, которому хотите добавить оценку - ')
                 grade = int(input('Оценка, которую хотите добавить - '))
                 found_student = None
-                # student_iter = cycle(students)
-                i = 0
-                while i < len(students):
-                    if students[i].student_name == student_name.capitalize():
-                        found_student = students[i]
-                    i += 1
-                # for s in students:
-                #     if s.student_name == student_name.capitalize():
-                #         found_student = s
+                for s in students:
+                    if s.student_name == student_name.capitalize():
+                        found_student = s
                 if found_student:
                     found_student.add_grade(grade)
                     found_student.get_all_marks()
-                    student = found_student
                 else:
                     print('Студент не найден')
             case 3:
@@ -83,9 +82,7 @@ def student_calc(name: str, age: int):
                     if students[i].student_name == student_name.capitalize():
                         found_student = students[i]
                     i += 1
-                # for s in students:
-                #     if s.student_name == student_name.capitalize():
-                #         found_student = s
+
                 if found_student:
                     found_student.get_average_grade()
                 else:
@@ -111,6 +108,4 @@ def student_calc(name: str, age: int):
 
 
 if __name__ == "__main__":
-    name = input('Имя студента - ')
-    age = int(input('Возраст студента - '))
-    student_calc(name, age)
+    student_calc()
